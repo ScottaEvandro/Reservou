@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservou.HttpApi", "Reservou.HttpApi\Reservou.HttpApi.csproj", "{B7ECC380-D8CB-4B81-9620-4DE4619F0F8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservou", "Reservou\Reservou.csproj", "{0F9F4DAA-3ACF-41C0-8320-D0600DA6C8FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7ECC380-D8CB-4B81-9620-4DE4619F0F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7ECC380-D8CB-4B81-9620-4DE4619F0F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7ECC380-D8CB-4B81-9620-4DE4619F0F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7ECC380-D8CB-4B81-9620-4DE4619F0F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F9F4DAA-3ACF-41C0-8320-D0600DA6C8FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F9F4DAA-3ACF-41C0-8320-D0600DA6C8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F9F4DAA-3ACF-41C0-8320-D0600DA6C8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F9F4DAA-3ACF-41C0-8320-D0600DA6C8FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBBD39B1-9B7C-4E28-B3EF-02F20481220A}
+	EndGlobalSection
+EndGlobal
