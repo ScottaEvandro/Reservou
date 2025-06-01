@@ -10,7 +10,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "https": {
+    "Reservou.HttpApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
