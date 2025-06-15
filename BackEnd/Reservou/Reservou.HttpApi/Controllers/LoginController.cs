@@ -7,12 +7,12 @@ namespace Reservou.HttpApi.Controllers;
 [ApiVersion("1")]
 public class LoginController : ControllerBase
 {
-    [HttpGet]
+    [HttpPost]
     public async Task<IActionResult> UserLogin(
         [FromBody] LoginViewModel loginViewModel
     )
     {
-        if (string.IsNullOrWhiteSpace(loginViewModel.UserName) &&
+        if (string.IsNullOrWhiteSpace(loginViewModel.Username) &&
             string.IsNullOrWhiteSpace(loginViewModel.Password))
         {
             Console.WriteLine("As informações do usuário não podem ser nulas ou estar em branco");
