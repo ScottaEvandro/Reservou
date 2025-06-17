@@ -14,7 +14,7 @@
             <img class="logo-login" src="Assets/Imagens/Default/reservou-logo.png">
             <p class="login-slogan">Seu acesso ao espaço perfeito.</p>
 
-            <form class="login-form">
+            <form id="login-form" class="login-form">
                 <div class="form-group">
                     <label for="username"><i class="fas fa-user"></i> Usuário:</label>
                     <input type="text" id="username" name="username" placeholder="Seu nome de usuário" required>
@@ -23,7 +23,8 @@
                     <label for="password"><i class="fas fa-lock"></i> Senha:</label>
                     <input type="password" id="password" name="password" placeholder="Sua senha" required>
                 </div>
-                <button type="submit" class="btn-primary login-btn">Entrar</button>
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                <button type="submit" id="login" class="btn-primary login-btn">Entrar</button>
             </form>
 
             <div class="login-links">
@@ -32,8 +33,10 @@
                 <a href="#">Cadastre-se</a>
             </div>
 
-            <a href="index.html" class="skip-login-btn">Continuar sem login (apenas demo)</a>
+            <a href="" class="skip-login-btn">Continuar sem login (apenas demo)</a>
         </div>
     </div>
+
+    <script src="Assets/JavaScript/login.js"></script>
 </body>
 </html>
