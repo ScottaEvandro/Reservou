@@ -1,27 +1,19 @@
+using Reservou.HttpApi.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var configuration = builder.Configuration;
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin",
-        builder =>
-        {
-            builder.WithOrigins("http://127.0.0.1:5501")
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
-        });
-});
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder
+    .Services.AddInjectionService(configuration)
+    .AddCorsService()
+    .AddControllers()
+    .Services.AddOpenApi();
 
 var app = builder.Build();
 
 app.UseCors("AllowSpecificOrigin");
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
