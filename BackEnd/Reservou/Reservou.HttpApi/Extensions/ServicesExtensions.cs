@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Reservou.Domain.Cadastro;
+using Reservou.Domain.Cadastro.Infrastructure;
 using Reservou.Domain.Login;
 using Reservou.Domain.Login.Infrastructure;
 
@@ -40,6 +42,9 @@ public static class ServicesExtensions
     {
         service.AddScoped<LoginHandler>();
         service.AddScoped<LoginQueries>();
+
+        service.AddScoped<CadastroHandler>();
+        service.AddScoped<CadastroRepository>();
 
         return service;
     }

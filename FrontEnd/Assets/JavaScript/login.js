@@ -29,8 +29,6 @@ document.getElementById('login-form').addEventListener('submit', async function 
             body: JSON.stringify(requestBody)
         });
 
-        console.log(response.status);
-
         switch (response.status) {
             case 404:
                 errorMessage.textContent = 'Usuário ou senha incorretos. Tente novamente.';
