@@ -1,13 +1,29 @@
-﻿using Npgsql;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
+using Npgsql;
+using Reservou.Helpers;
 
 namespace Reservou.Domain.Login.Infrastructure;
 
-public class LoginQueries
+public class LoginQueries : BaseConnection
 {
-    public LoginQueries() { }
+    public LoginQueries(IConfiguration configuration) : base(configuration)
+    { }
 
     public async Task<bool> isValidLogin(string username, string password)
     {
-        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=reservou");
+        using NpgsqlConnection connection = new(ConnectionString);
+
+        string sql = $@"SELECT COUNT(*) 
+                          FROM usuarios 
+                         WHERE nome = @username 
+                           AND senha = @password ";
+
+        var result = await connection.ExecuteScalarAsync<int>(
+            sql,
+            new { username, password }
+        );
+
+        return result > 0;
     }
 }

@@ -1,13 +1,24 @@
-﻿using Reservou.Domain.Login;
+﻿using Microsoft.AspNetCore.Mvc;
+using Reservou.Domain.Login;
 using Reservou.Domain.Login.Infrastructure;
-using Reservou.HttpApi.Controllers;
-using System.Net.NetworkInformation;
 
 namespace Reservou.HttpApi.Extensions;
 
 public static class ServicesExtensions
 {
-    public static IServiceCollection AddCorsService(this IServiceCollection services)
+    public static IServiceCollection AddVersioning(this IServiceCollection services)
+    {
+        services.AddApiVersioning(config =>
+        {
+            config.DefaultApiVersion = new ApiVersion(1, 0);
+            config.AssumeDefaultVersionWhenUnspecified = true;
+            config.ReportApiVersions = true;
+        });
+
+        return services;
+    }
+
+    public static IServiceCollection AddCorsDefinition(this IServiceCollection services)
     {
         services.AddCors(options =>
         {

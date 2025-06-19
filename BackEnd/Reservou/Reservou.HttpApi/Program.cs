@@ -6,7 +6,8 @@ var configuration = builder.Configuration;
 
 builder
     .Services.AddInjectionService(configuration)
-    .AddCorsService()
+    .AddVersioning()
+    .AddCorsDefinition()
     .AddControllers()
     .Services.AddOpenApi();
 

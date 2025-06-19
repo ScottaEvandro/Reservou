@@ -1,4 +1,4 @@
-import { hashPassword } from './utils.js';
+import { hashPassword } from "./utils.js";
 
 document.getElementById('login-form').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -11,6 +11,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     errorMessage.style.display = 'none';
 
     try {
+
         const passHased = await hashPassword(password);
 
         const requestBody = {
@@ -20,29 +21,37 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
         const urlApi = "https://localhost:7181/api/v1/Login";
 
-        fetch(urlApi, {
+        const response = await fetch(urlApi, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestBody)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    errorMessageDiv.textContent = 'Usuário ou senha incorretos. Tente novamente.';
-                    errorMessageDiv.style.display = 'block';
-                } 
-                return response.json()
-            })
-            .then(data => {
-                document.getElementById('resultado').innerText = 'Dados enviados com sucesso! Resposta da API: ' + JSON.stringify(data);
-                console.log('Resposta da API:', data);
-            })
-            .catch(error => {
-                console.error('Erro na requisição AJAX:', error);
-            });
+        });
+
+        console.log(response.status);
+
+        switch (response.status) {
+            case 404:
+                errorMessage.textContent = 'Usuário ou senha incorretos. Tente novamente.';
+                errorMessage.style.display = 'block';
+                console.log(errorMessage);
+                break;
+            case 202:
+                window.location.href = './cadastro.html';
+                break;
+            default:
+                const errorText = await response.text().catch(() => '');
+                const errorMessage1 = errorText || `Erro inesperado do servidor: ${response.status}`;
+                throw new Error(errorMessage1);
+        }
     }
     catch (error) {
-        console.error('Erro no processo de login:', error);
+        console.error('Erro na requisição Ajax: ', error);
+
+        if (error.message !== 'NotFound') {
+            errorMessage.textContent = error.message || 'Ocorreu um erro ao conectar com o servidor. Tente novamente em instantes.';
+            errorMessage.style.display = 'block';
+        }
     }
 })
