@@ -1,0 +1,57 @@
+import { hashPassword } from "./utils.js";
+
+document.getElementById('login-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
+
+    errorMessage.textContent = '';
+    errorMessage.style.display = 'none';
+
+    try {
+
+        const passHased = await hashPassword(password);
+
+        const requestBody = {
+            Username: username,
+            Password: passHased
+        }
+
+        const urlApi = "https://localhost:7181/api/v1/Login";
+
+        const response = await fetch(urlApi, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        console.log(response.status);
+
+        switch (response.status) {
+            case 404:
+                errorMessage.textContent = 'Usuário ou senha incorretos. Tente novamente.';
+                errorMessage.style.display = 'block';
+                console.log(errorMessage);
+                break;
+            case 202:
+                window.location.href = './cadastro.html';
+                break;
+            default:
+                const errorText = await response.text().catch(() => '');
+                const errorMessage1 = errorText || `Erro inesperado do servidor: ${response.status}`;
+                throw new Error(errorMessage1);
+        }
+    }
+    catch (error) {
+        console.error('Erro na requisição Ajax: ', error);
+
+        if (error.message !== 'NotFound') {
+            errorMessage.textContent = error.message || 'Ocorreu um erro ao conectar com o servidor. Tente novamente em instantes.';
+            errorMessage.style.display = 'block';
+        }
+    }
+})

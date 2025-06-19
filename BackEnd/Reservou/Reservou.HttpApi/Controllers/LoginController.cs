@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Reservou.Domain.Login;
 using Reservou.HttpApi.ViewModels;
 
 namespace Reservou.HttpApi.Controllers;
@@ -7,19 +8,29 @@ namespace Reservou.HttpApi.Controllers;
 [ApiVersion("1")]
 public class LoginController : ControllerBase
 {
-    [HttpGet]
+    [HttpPost]
     public async Task<IActionResult> UserLogin(
-        [FromBody] LoginViewModel loginViewModel
+        [FromBody] LoginViewModel loginViewModel,
+        [FromServices] LoginHandler loginHandler
     )
     {
-        if (string.IsNullOrWhiteSpace(loginViewModel.UserName) &&
+        if (string.IsNullOrWhiteSpace(loginViewModel.Username) &&
             string.IsNullOrWhiteSpace(loginViewModel.Password))
         {
             Console.WriteLine("As informações do usuário não podem ser nulas ou estar em branco");
             return BadRequest();
         }
 
-        // TODO validar aqui a com o banco de dados.
+        var result = await loginHandler.LoginStatus(
+            loginViewModel.Username,
+            loginViewModel.Password
+        );
+
+        if (!result)
+        {
+            Console.WriteLine("Usuário ou senha inválidos");
+            return NotFound();
+        }
 
         return Accepted();
     }
