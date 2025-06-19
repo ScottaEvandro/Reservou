@@ -1,0 +1,144 @@
+:root {
+    --primaria-amadeirado-escuro: #4B3621;
+    --secundaria-amadeirado-medio: #8B4513;
+    --cta-verde: #6B8E23;
+    --fundo-leve: #F8F5EC;
+    --texto-principal: #333333;
+    --texto-secundario: #707070;
+}
+
+/* --- Estilos para a Tela de Login --- */
+.login-body {
+    background-color: var(--primaria-amadeirado-escuro); /* Fundo escuro como no cabeçalho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    margin: 0;
+    padding: 20px; /* Espaçamento em telas pequenas */
+    box-sizing: border-box; /* Inclui padding na altura/largura */
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px; /* Largura máxima do container de login */
+}
+
+.login-card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+}
+
+.login-logo  {
+    width: 150px;
+    height: auto;
+    color: var(--fundo-leve);
+    text-decoration: none; /* Remove sublinhado do link */
+    transition: color 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+.login-slogan {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    color: var(--texto-secundario);
+    margin-bottom: 30px;
+}
+
+.login-form {
+    text-align: left; /* Alinha labels e inputs à esquerda dentro do formulário */
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--texto-principal);
+    margin-bottom: 5px;
+    display: block; /* Garante que a label fique em sua própria linha */
+}
+
+.login-form label .fas {
+    margin-right: 8px;
+    color: var(--secundaria-amadeirado-medio);
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: calc(100% - 20px); /* 100% menos o padding */
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    color: var(--texto-principal);
+    font-family: 'Lato', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: var(--secundaria-amadeirado-medio);
+    outline: none;
+}
+
+.login-btn {
+    width: 100%; /* Botão ocupa a largura total do card */
+    padding: 14px;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.login-links {
+    margin-top: 25px;
+    font-size: 15px;
+}
+
+.login-links a {
+    color: var(--secundaria-amadeirado-medio);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-links a:hover {
+    color: var(--cta-verde);
+}
+
+.login-links span {
+    color: var(--texto-secundario);
+    margin: 0 8px;
+}
+
+.skip-login-btn {
+    display: block; /* Ocupa a largura total */
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--texto-secundario);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.skip-login-btn:hover {
+    color: var(--primaria-amadeirado-escuro);
+}
+
+/* Ajustes de responsividade para o Login */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+    .login-slogan {
+        font-size: 16px;
+    }
+    .login-form input {
+        font-size: 15px;
+    }
+    .login-btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+}

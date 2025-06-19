@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservou! - Login</title>
-    <link rel="stylesheet" href="Assets/CSS/login.css">
+    <title>Reservou! - Cadastro</title>
+    <link rel="stylesheet" href="Assets/CSS/cadastro.css">
     <link rel="stylesheet" href="Assets/CSS/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="login-body">
-    <div class="login-container">
-        <div class="login-card">
-            <img class="login-logo" src="Assets/Imagens/Default/reservou-logo.png">
-            <p class="login-slogan">Seu acesso ao espaço perfeito.</p>
+<body class="cadastro-body">
+    <div class="cadastro-container">
+        <div class="cadastro-card">
+            <img class="img-logo" src="Assets/Imagens/Default/reservou-logo.png">
+            <p class="slogan">Seu acesso ao espaço perfeito.</p>
 
-            <form id="login-form" class="login-form">
+            <form id="cadastro-form" class="cadastro-form">
                 <div class="form-group">
                     <label for="username"><i class="fas fa-user"></i> Usuário:</label>
                     <input type="text" id="username" name="username" placeholder="Seu nome de usuário" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Telefone:</label>
+                    <input type="text" id="phone" name="phone" placeholder="Seu telefone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                    <input type="text" id="email" name="email" placeholder="Seu email" required>
                 </div>
                 <div class="form-group">
                     <label for="password"><i class="fas fa-lock"></i> Senha:</label>
                     <input type="password" id="password" name="password" placeholder="Sua senha" required>
                 </div>
                 <div id="error-message" class="error-message" style="display: none;"></div>
-                <button type="submit" id="login" class="btn-primary login-btn">Entrar</button>
+                <button type="submit" id="cadastro" class="btn-primary cadastro-btn">Salvar</button>
             </form>
 
-            <div class="login-links">
-                <a href="#">Esqueceu a senha?</a>
-                <span>|</span>
-                <a href="cadastro.html">Cadastre-se</a>
+            <div class="cadastro-links">
+                <p class="text-style">Já tem cadastro? 
+                    <span>|</span>
+                    <a href="index.html">Acesse</a>
+                </p>
             </div>
 
-            <a href="" class="skip-login-btn">Continuar sem login (apenas demo)</a>
         </div>
     </div>
-
     <script src="Assets/JavaScript/login.js"></script>
 </body>
 </html>
