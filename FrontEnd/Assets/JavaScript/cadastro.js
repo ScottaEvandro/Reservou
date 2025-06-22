@@ -39,13 +39,13 @@ document.getElementById('cadastro-form').addEventListener('submit', async functi
                 window.location.href = './login.html';
                 break;
             case 409:
-                errorMessage.textContent = 'Usuário informado já está cadastrado. Faça login!';
+                errorMessage.textContent = 'Usuário informado já está cadastrado!';
                 errorMessage.style.display = 'block';
                 break;
             default:
                 const errorText = await response.text().catch(() => '');
-                const errorMessage = errorText || `Erro inesperado do servidor: ${response.status}`;
-                throw new Error(errorMessage);
+                const errorMessage1 = errorText || `Erro inesperado do servidor: ${response.status}`;
+                throw new Error(errorMessage1);
         }
     }
     catch (error) {
