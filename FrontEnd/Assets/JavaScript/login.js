@@ -29,15 +29,12 @@ document.getElementById('login-form').addEventListener('submit', async function 
             body: JSON.stringify(requestBody)
         });
 
-        console.log(response.status);
-
         switch (response.status) {
             case 404:
                 errorMessage.textContent = 'Usuário ou senha incorretos. Tente novamente.';
                 errorMessage.style.display = 'block';
-                console.log(errorMessage);
                 break;
-            case 202:
+            case 200:
                 window.location.href = './cadastro.html';
                 break;
             default:

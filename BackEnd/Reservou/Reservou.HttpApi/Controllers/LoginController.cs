@@ -17,8 +17,7 @@ public class LoginController : ControllerBase
         if (string.IsNullOrWhiteSpace(loginViewModel.Username) &&
             string.IsNullOrWhiteSpace(loginViewModel.Password))
         {
-            Console.WriteLine("As informações do usuário não podem ser nulas ou estar em branco");
-            return BadRequest();
+            return StatusCode(StatusCodes.Status400BadRequest);
         }
 
         var result = await loginHandler.LoginStatus(
@@ -28,10 +27,9 @@ public class LoginController : ControllerBase
 
         if (!result)
         {
-            Console.WriteLine("Usuário ou senha inválidos");
-            return NotFound();
+            return StatusCode(StatusCodes.Status404NotFound);
         }
 
-        return Accepted();
+        return StatusCode(StatusCodes.Status200OK);
     }
 }
