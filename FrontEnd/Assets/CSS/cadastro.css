@@ -70,7 +70,6 @@
 }
 
 .cadastro-form input[type="text"],
-.cadastro-form input[type="number"],
 .cadastro-form input[type="password"] {
     width: calc(100% - 20px); /* 100% menos o padding */
     padding: 12px 10px;

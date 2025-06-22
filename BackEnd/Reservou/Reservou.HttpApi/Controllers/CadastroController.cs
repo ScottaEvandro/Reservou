@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Reservou.Domain.Cadastro;
 using Reservou.HttpApi.ViewModels;
+using System.Net;
 
 namespace Reservou.HttpApi.Controllers;
 
@@ -15,24 +17,26 @@ public class CadastroController : ControllerBase
     {
         if (cadastroViewModel == null)
         {
-            return BadRequest("Dados de cadastro inválidos.");
+            return StatusCode(StatusCodes.Status400BadRequest);
         }
 
         var result = await cadastroHandler.NovoCadastro(new CadastroCommand
         {
-            Nome = cadastroViewModel.Nome,
+            Nome = cadastroViewModel.Username,
             Cpf = cadastroViewModel.Cpf,
             Email = cadastroViewModel.Email,
-            Telefone = cadastroViewModel.Telefone,
-            Senha = cadastroViewModel.Senha
+            Telefone = cadastroViewModel.Phone,
+            Senha = cadastroViewModel.Password
         });
 
-
-        if (!result)
+        switch (result)
         {
-            return BadRequest("Erro ao cadastrar usuário. Tente novamente!");
+            case HttpStatusCode.Conflict:
+                return StatusCode(StatusCodes.Status409Conflict);
+            case HttpStatusCode.InternalServerError:
+                return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
-        return Accepted();
+        return StatusCode(StatusCodes.Status201Created);
     }
 }

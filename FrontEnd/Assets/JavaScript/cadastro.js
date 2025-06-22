@@ -1,4 +1,4 @@
-import { hashPassword } from './utils.js';
+import { hashPassword } from "./utils.js";
 
 document.getElementById('cadastro-form').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -14,7 +14,7 @@ document.getElementById('cadastro-form').addEventListener('submit', async functi
     errorMessage.style.display = 'none';
 
     try {
-        const passHased = await hashPassword(password)
+        const passHased = await hashPassword(password);
 
         const requestBody = {
             Username: username,
@@ -35,13 +35,17 @@ document.getElementById('cadastro-form').addEventListener('submit', async functi
         })
 
         switch (response.status) {
-            case 202:
+            case 201:
                 window.location.href = './login.html';
+                break;
+            case 409:
+                errorMessage.textContent = 'Usuário informado já está cadastrado. Faça login!';
+                errorMessage.style.display = 'block';
                 break;
             default:
                 const errorText = await response.text().catch(() => '');
-                const errorMessage1 = errorText || `Erro inesperado do servidor: ${response.status}`;
-                throw new Error(errorMessage1);
+                const errorMessage = errorText || `Erro inesperado do servidor: ${response.status}`;
+                throw new Error(errorMessage);
         }
     }
     catch (error) {

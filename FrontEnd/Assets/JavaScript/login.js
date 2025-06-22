@@ -33,9 +33,8 @@ document.getElementById('login-form').addEventListener('submit', async function 
             case 404:
                 errorMessage.textContent = 'Usuário ou senha incorretos. Tente novamente.';
                 errorMessage.style.display = 'block';
-                console.log(errorMessage);
                 break;
-            case 202:
+            case 200:
                 window.location.href = './cadastro.html';
                 break;
             default:
