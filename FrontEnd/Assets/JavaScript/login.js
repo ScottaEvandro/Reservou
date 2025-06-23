@@ -6,9 +6,13 @@ document.getElementById('login-form').addEventListener('submit', async function 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('error-message');
+    const successMessage = document.getElementById('success-message');
 
     errorMessage.textContent = '';
     errorMessage.style.display = 'none';
+
+    successMessage.textContent = '';
+    successMessage.style.display = 'none';
 
     try {
 
@@ -19,7 +23,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
             Password: passHased
         }
 
-        const urlApi = "https://localhost:7181/api/v1/Login";
+        const urlApi = "https://localhost:7181/api/v1/User/Login";
 
         const response = await fetch(urlApi, {
             method: 'POST',
@@ -35,7 +39,21 @@ document.getElementById('login-form').addEventListener('submit', async function 
                 errorMessage.style.display = 'block';
                 break;
             case 200:
-                window.location.href = './cadastro.html';
+                successMessage.textContent = 'Login efetuado com sucesso!';
+                successMessage.style.display = 'block';
+                const data = await response.json();
+
+                sessionStorage.setItem('currentUserData', JSON.stringify(data));
+                // UserType 1 = Administrador                    
+                if (data.userType == 1) {
+                    setTimeout(function () {
+                    window.location.href = './dashboard.html';
+                }, 500)
+                } else {
+                    setTimeout(function () {
+                    window.location.href = './home.html';
+                }, 500)
+                }
                 break;
             default:
                 const errorText = await response.text().catch(() => '');
@@ -44,11 +62,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
         }
     }
     catch (error) {
-        console.error('Erro na requisição Ajax: ', error);
-
-        if (error.message !== 'NotFound') {
-            errorMessage.textContent = error.message || 'Ocorreu um erro ao conectar com o servidor. Tente novamente em instantes.';
-            errorMessage.style.display = 'block';
-        }
+        errorMessage.textContent = 'Ocorreu um erro ao conectar com o servidor. Tente novamente em instantes.';
+        errorMessage.style.display = 'block';
     }
 })

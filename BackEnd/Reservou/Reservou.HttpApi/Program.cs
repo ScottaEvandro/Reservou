@@ -6,6 +6,7 @@ var configuration = builder.Configuration;
 
 builder
     .Services.AddInjectionService(configuration)
+    .AddSwagger()
     .AddVersioning()
     .AddCorsDefinition()
     .AddControllers()
@@ -18,6 +19,11 @@ app.UseCors("AllowSpecificOrigin");
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minha API Incrível v1");
+    });
 }
 
 app.UseHttpsRedirection();

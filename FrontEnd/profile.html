@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservou! - Editar perfil</title>
+    <link rel="stylesheet" href="Assets/CSS/styles.css">
+    <link rel="stylesheet" href="Assets/CSS/cadastro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Montserrat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body lass="cadastro-body">
+    <header class="main-header">
+        <div class="header-content container">
+            <img class="logo" src="Assets/Imagens/Default/reservou-logo.png">
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar espaços...">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <nav class="header-nav">
+                <a href="mybookings.html" class="nav-icon"> <i class="fas fa-calendar-alt"></i>
+                    <span>Minhas Reservas</span>
+                </a>
+                <a href="profile.html" class="nav-icon"> <i class="fas fa-user-circle"></i>
+                    <span>Meu perfil</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="cadastro-container">
+        <h1>Editar Perfil</h1>
+
+        <div id="loadingMessage" style="text-align: center; font-size: 1.1em;">Carregando dados do perfil...</div>
+        <div id="errorMessage" class="error" style="display: none;"></div>
+        
+        <div class="cadastro-card">
+            <form id="cadastro-form" class="cadastro-form">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Usuário:</label>
+                    <input type="text" id="username" name="username" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="cpf"><i class="fas fa-id-card"></i> CPF:</label>
+                    <input type="text" id="cpf" name="cpf" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                    <input type="text" id="email" name="email" placeholder="Seu email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Telefone:</label>
+                    <input type="text" id="phone" name="phone" placeholder="Seu telefone" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Nova Senha:</label>
+                    <input type="password" id="password" name="password" placeholder="Sua senha" required>
+                </div>
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                <div id="success-message" class="success-message" style="display: none;"></div>
+                <button type="submit" id="cadastro" class="btn-primary cadastro-btn">Salvar alterações</button>
+            </form>
+        </div>
+    </div>
+    <script src="Assets/JavaScript/cadastro.js" type="module" ></script>
+    <script src="Assets/JavaScript/utils.js" type="module" ></script>
+</body>
+
+</html>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-col logo-col">
+            <a href="#" class="logo">Reservou!</a>
+            <p>Seu espaço perfeito para eventos e lazer, a um clique de distância.</p>
+        </div>
+
+        <div class="footer-col nav-col">
+            <h3>Navegação</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Nossos Espaços</a></li>
+                <li><a href="#">Como Funciona</a></li>
+                <li><a href="#">Perguntas Frequentes</a></li>
+                <li><a href="admin-add-space.html">Área do Administrador</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col contact-col">
+            <h3>Contato</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123 - Caxias do Sul, RS</p>
+            <p><i class="fas fa-phone"></i> (54) 99999-9999</p>
+            <p><i class="fas fa-envelope"></i> contato@reservou.com</p>
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2025 Reservou! Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>

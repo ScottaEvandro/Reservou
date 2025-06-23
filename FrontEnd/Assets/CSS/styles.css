@@ -48,6 +48,27 @@ body {
     font-size: 0.9em;
 }
 
+.success-message {
+    color: #04f761; /* Cor verde para sucesso */
+    background-color: #edffeb; /* Fundo mais claro para destaque */
+    border: 1px solid #3cf436;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.logo {
+    margin-top: 5px;
+    width: 90px;
+    height: auto;
+    color: var(--fundo-leve);
+    text-decoration: none; /* Remove sublinhado do link */
+    transition: color 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
 .logo:hover {
     color: #F8F5EC; /* Um leve destaque no hover */
 }
@@ -351,7 +372,7 @@ body {
 
 /* Estilo para a Seção do Banner Principal (Hero) */
 .hero-banner {
-    background-image: url('https://via.placeholder.com/1920x600/4B3621/FFFFFF?text=Espaco+Moderno+-+Reservou!'); /* Imagem de fundo placeholder */
+    background-image: url('https://via.placeholder.com/1920x600/4B3621/FFFFFF?text=Espaco+Moderno+-+Reservou!');
     background-size: cover; /* Garante que a imagem cubra toda a área */
     background-position: center; /* Centraliza a imagem */
     height: 500px; /* Altura fixa do banner */
