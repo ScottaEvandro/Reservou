@@ -2,15 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Reservou.Domain.Users.Commands;
 using Reservou.Domain.Users.Handlers;
-using Reservou.HttpApi.ViewModels;
+using Reservou.HttpApi.ViewModels.Users;
 using System.Net;
 
 namespace Reservou.HttpApi.Controllers;
 
-
 [Route("api/v{ApiVersion}/[Controller]")]
 [ApiVersion("1")]
-
 public class UserController : ControllerBase
 {
     [HttpPost("Login")]

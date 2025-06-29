@@ -1,5 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.OpenApi.Models;
+using Reservou.Domain.Spaces.Handlers;
+using Reservou.Domain.Spaces.Infrastructure;
 using Reservou.Domain.Users.Handlers;
 using Reservou.Domain.Users.Infrastructure.Queries;
 using Reservou.Domain.Users.Infrastructure.Repositories;
@@ -16,6 +18,10 @@ public static class ServicesExtensions
         service.AddScoped<UserQueries>();
         service.AddScoped<UserRepositories>();
 
+        service.AddScoped<SpaceHandler>();
+        service.AddScoped<SpacesQueries>();
+        service.AddScoped<SpacesRepositories>();
+
         return service;
     }
 
@@ -28,18 +34,7 @@ public static class ServicesExtensions
             {
                 Title = "Reservou API",
                 Version = "v1",
-                Description = "Reservou API Documentation",
-                Contact = new OpenApiContact
-                {
-                    Name = "Seu Nome",
-                    Email = "seu.email@example.com",
-                    Url = new Uri("https://seusite.com")
-                },
-                License = new OpenApiLicense
-                {
-                    Name = "Licença de Exemplo",
-                    Url = new Uri("https://example.com/license")
-                }
+                Description = "Reservou API Documentation"
             });
         });
 
@@ -65,7 +60,7 @@ public static class ServicesExtensions
             options.AddPolicy("AllowSpecificOrigin",
                 builder =>
                 {
-                    builder.WithOrigins("http://127.0.0.1:5500")
+                    builder.WithOrigins("http://127.0.0.1:5500","http://127.0.0.1:5501")
                            .AllowAnyHeader()
                            .AllowAnyMethod();
                 });

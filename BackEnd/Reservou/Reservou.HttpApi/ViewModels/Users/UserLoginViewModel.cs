@@ -1,4 +1,4 @@
-﻿namespace Reservou.HttpApi.ViewModels;
+﻿namespace Reservou.HttpApi.ViewModels.Users;
 
 #nullable disable
 public class UserLoginViewModel
