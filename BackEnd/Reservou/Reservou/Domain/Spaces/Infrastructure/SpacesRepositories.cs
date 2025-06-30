@@ -13,7 +13,6 @@ public class SpacesRepositories : BaseConnection
     public async Task<bool> SaveNewSpace(NewSpaceCommand newSpace)
     {
         using var connection = new NpgsqlConnection(ConnectionString);
-
         try
         {
             string sql = $@"INSERT INTO espacos (
@@ -61,13 +60,9 @@ public class SpacesRepositories : BaseConnection
         }
     }
 
-    public async Task<bool> SaveSpaceImages(List<string> spaceImages)
+    public async Task<bool> SaveSpaceImages(List<string> spaceImages, int spaceId)
     {
-
         using var connection = new NpgsqlConnection(ConnectionString);
-        string sqlGetId = "SELECT max(id) from espacos ";
-
-        var spaceId = await connection.QueryFirstOrDefaultAsync<int>(sqlGetId);
 
         string sqlImages = $@"INSERT INTO espacos_fotos (
                                         espaco_id, 

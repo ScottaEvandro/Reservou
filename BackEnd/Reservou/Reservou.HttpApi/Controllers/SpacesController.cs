@@ -4,7 +4,6 @@ using Reservou.Domain.Spaces.Commands;
 using Reservou.Domain.Spaces.Handlers;
 using Reservou.Domain.Spaces.Infrastructure;
 using Reservou.HttpApi.ViewModels.Spaces;
-using System.Net;
 
 namespace Reservou.HttpApi.Controllers;
 
@@ -24,7 +23,8 @@ public class SpacesController
 
     [HttpPost("AddSpace")]
     public async Task<IActionResult> AddSpace(
-        [FromBody] NewSpaceViewModel newSpace,
+        [FromForm] NewSpaceViewModel newSpace,
+        List<IFormFile> SpaceImages,
         [FromServices] SpaceHandler spaceHandler
     )
     {
@@ -36,13 +36,10 @@ public class SpacesController
             newSpace.Price,
             newSpace.ReserveDuration,
             newSpace.MaintenanceTime,
-            newSpace.SpaceImages ?? Array.Empty<string>(),
             newSpace.isActive
         );
 
-        return new ObjectResult(newSpace);
-
-        var result = await spaceHandler.CreateNewSpaceAsync(newSpaceCommand);
+        var result = await spaceHandler.CreateNewSpaceAsync(newSpaceCommand, SpaceImages);
 
         return result switch
         {

@@ -9,6 +9,5 @@ public class NewSpaceViewModel
     public decimal Price { get; set; }
     public TimeSpan ReserveDuration { get; set; }
     public TimeSpan MaintenanceTime { get; set; }
-    public string[] SpaceImages { get; set; } = [];
     public bool isActive { get; set; }
 }

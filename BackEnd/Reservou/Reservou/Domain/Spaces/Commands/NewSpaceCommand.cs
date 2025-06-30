@@ -3,7 +3,7 @@
 public class NewSpaceCommand
 {
     public NewSpaceCommand(string SpaceName, string Description, int Capacity, int SpaceTypeId, decimal Price,
-                           TimeSpan ReserveDuration, TimeSpan MaintenanceTime, string[] SpaceImages, bool isActive)
+                           TimeSpan ReserveDuration, TimeSpan MaintenanceTime, bool isActive)
     {
         this.SpaceName = SpaceName;
         this.Description = Description;
@@ -12,18 +12,16 @@ public class NewSpaceCommand
         this.Price = Price;
         this.ReserveDuration = ReserveDuration;
         this.MaintenanceTime = MaintenanceTime;
-        this.SpaceImages = SpaceImages ?? Array.Empty<string>();
         this.isActive = isActive;
     }
 
-    public string SpaceName { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
+    public string SpaceName { get; set; }
+    public string Description { get; set; }
     public int Capacity { get; set; }
     public int SpaceTypeId { get; set; }
     public decimal Price { get; set; }
     public TimeSpan ReserveDuration { get; set; }
     public TimeSpan MaintenanceTime { get; set; }
-    public string[] SpaceImages { get; set; } = Array.Empty<string>();
     public bool isActive { get; set; }
 
 }
