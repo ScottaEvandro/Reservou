@@ -4,6 +4,7 @@ using Reservou.Domain.Spaces.Infrastructure;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Text.Json;
 
 namespace Reservou.Domain.Spaces.Handlers;
 
@@ -27,7 +28,7 @@ public class SpaceHandler
             if (result && SpaceImages.Count > 0)
             {
                 int spaceId = await _spacesQueries.GetLastSpaceIdInserted();
-                List<string> filesPath = await CreateFolderAndSaveFiles(SpaceImages, spaceId);
+                string filesPath = await CreateFolderAndSaveFiles(SpaceImages, spaceId);
 
                 await _spaceRepositories.SaveSpaceImages(filesPath, spaceId);
             }
@@ -40,7 +41,7 @@ public class SpaceHandler
         return true;
     }
 
-    private async Task<List<string>> CreateFolderAndSaveFiles(List<IFormFile> spaceImages, int spaceId)
+    private static async Task<string> CreateFolderAndSaveFiles(List<IFormFile> spaceImages, int spaceId)
     {
         List<string> filePaths = new List<string>();
 
@@ -116,14 +117,15 @@ public class SpaceHandler
                         }
                     }
                 }
-                filePaths.Add(filePathToSave);
+                filePaths.Add(uniqueFileName);
             }
             catch (Exception ex)
             {
-                
+                throw new ApplicationException("Error to save Space Image", ex);
             }
         }
+        var imagesUrlJson = JsonSerializer.Serialize(filePaths);
 
-        return filePaths;
+        return imagesUrlJson;
     }
 }

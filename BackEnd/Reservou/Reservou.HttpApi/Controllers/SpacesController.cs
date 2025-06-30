@@ -1,9 +1,11 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Reservou.Domain.Spaces.Commands;
+using Reservou.Domain.Spaces.Dtos;
 using Reservou.Domain.Spaces.Handlers;
 using Reservou.Domain.Spaces.Infrastructure;
 using Reservou.HttpApi.ViewModels.Spaces;
+using System.Text.Json;
 
 namespace Reservou.HttpApi.Controllers;
 
@@ -11,7 +13,7 @@ namespace Reservou.HttpApi.Controllers;
 [ApiVersion("1")]
 public class SpacesController
 {
-    [HttpGet("GetSpaces")]
+    [HttpGet("GetSpacesTypes")]
     public async Task<IActionResult> GetSpaces(
         [FromServices] SpacesQueries spacesQueries
     )
@@ -46,5 +48,14 @@ public class SpacesController
             true => new StatusCodeResult(StatusCodes.Status201Created),
             false => new StatusCodeResult(StatusCodes.Status500InternalServerError)
         };
+    }
+
+    [HttpGet("GetAllSpaces")]
+    public async Task<IActionResult> GetAllSpaces(
+        [FromServices] SpacesQueries spacesQueries)
+    {
+        var result = await spacesQueries.GetAllSpaces();
+
+        return new ObjectResult(result);
     }
 }

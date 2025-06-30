@@ -60,7 +60,7 @@ public class SpacesRepositories : BaseConnection
         }
     }
 
-    public async Task<bool> SaveSpaceImages(List<string> spaceImages, int spaceId)
+    public async Task<bool> SaveSpaceImages(string spaceImages, int spaceId)
     {
         using var connection = new NpgsqlConnection(ConnectionString);
 
