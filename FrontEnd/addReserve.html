@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservou! - Realizar Reserva</title>
+    <link rel="stylesheet" href="Assets/CSS/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Montserrat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+        <h2>Confirmar Reserva</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 40px;">
+
+            <!-- CARD DO ESPAÇO -->
+            <div class="space-card" style="flex: 1; min-width: 400px; min-height: 400px;">
+                <img id="space-image" class="space-image" src="" alt="Imagem do espaço"
+                    style="width: 100%; height: 70%; border-radius: 12px;" />
+                <h3 id="space-name" style="margin: 10px;"></h3>
+                <p id="space-description" style="margin: 10px;"></p>
+                <ul>
+                    <li><i class="fas fa-users"></i> Capacidade: <span id="space-capacity"></span></li>
+                    <li><i class="fas fa-clock"></i> Duração: <span id="space-duration"></span></li>
+                    <li><i class="fas fa-dollar-sign"></i> Preço: <span id="space-price"></span></li>
+                </ul>
+            </div>
+
+            <!-- DADOS DO USUÁRIO + AÇÃO -->
+            <div style="flex: 1; min-width: 300px;">
+                <div class="user-info">
+                    <p><i class="fas fa-user"></i> <strong>Usuário:</strong> <span id="user-name"></span></p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <span id="user-email"></span></p>
+                    <p><i class="fas fa-phone"></i> <strong>Telefone:</strong> <span id="user-phone"></span></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="date"><i class="fas fa-calendar"></i> Data da Reserva:</label>
+                    <input type="date" id="reserve-date" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="time"><i class="fas fa-clock"></i> Hora de ínicio:</label>
+                    <input type="time" id="reserve-time" required />
+                </div>
+                <p id="success-message" class="success-message" style="display: none; margin-top: 10px;"></p>
+                <p id="error-message" class="error-message" style="display: none; margin-top: 10px;"></p>
+
+                <div class="form-actions">
+                    <button class="btn-primary" onclick="confirmarReserva()">
+                        <i class="fas fa-calendar-check"></i> Confirmar
+                    </button>
+                    <a class="btn-secondary" href="home.html"><i class="fas fa-xmark"></i>
+                        <span>Cancelar</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <p></p>
+    <div id="footer-placeholder"></div>
+
+</body>
+
+<script src="Assets/JavaScript/utils.js" type="module"></script>
+<script src="Assets/JavaScript/loadFooterAndHeader.js"></script>
+<script src="Assets/JavaScript/addReserve.js"></script>
+
+</html>

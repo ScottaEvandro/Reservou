@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.OpenApi.Models;
+using Reservou.Domain.Reserves.Infrastructure;
 using Reservou.Domain.Spaces.Handlers;
 using Reservou.Domain.Spaces.Infrastructure;
 using Reservou.Domain.Users.Handlers;
@@ -21,6 +22,9 @@ public static class ServicesExtensions
         service.AddScoped<SpaceHandler>();
         service.AddScoped<SpacesQueries>();
         service.AddScoped<SpacesRepositories>();
+
+        service.AddScoped<ReserveQueries>();
+        service.AddScoped<ReserveRepositories>();
 
         return service;
     }

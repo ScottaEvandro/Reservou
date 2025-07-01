@@ -47,18 +47,20 @@ document.addEventListener('DOMContentLoaded', async function () {
                     <span><i class="fas fa-dollar-sign"></i> Preço: R$ ${space.price.toFixed(2)}</span><br>
                     <span><i class="fas fa-clock"></i> Duração da reserva: ${reserveTimeFormated}</span><br>
                 </div>
-                <!--<div class="space-actions">
-                    <button class="edit-space-button" data-space-id="${space.id}"><i class="fas fa-edit"></i> Editar</button>
-                    <button class="delete-space-button" data-space-id="${space.id}"><i class="fas fa-trash-alt"></i> Excluir</button>
-                </div>--> `;
+                <div class="reserve-button">
+                    <button class="reserve-space-button" data-space-id="${space.id}"><i class="fas fa-calendar-check"></i> Reservar</button>
+                </div> <p></p> `;
+
+            spaceCard.querySelector('.reserve-space-button').spaceData = space;
 
             spacesListContainer.appendChild(spaceCard);
         });
 
-        spacesListContainer.querySelectorAll('.edit-space-button').forEach(button => {
+        spacesListContainer.querySelectorAll('.reserve-space-button').forEach(button => {
             button.addEventListener('click', function () {
-                const spaceId = this.dataset.spaceId;
-                alert(`Editar espaço com ID: ${spaceId} `);
+                const selectedSpace = this.spaceData;
+                localStorage.setItem('selectedSpace', JSON.stringify(selectedSpace));
+                window.location.href = './addReserve.html';
             });
         });
 

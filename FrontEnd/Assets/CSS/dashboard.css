@@ -5,12 +5,14 @@
     margin-bottom: 20px;
 }
 
-.add-space-button {
-    display: block;
+.add-space-button,
+.reserve-space-button,
+.edit-space-button {
+    display: inline;
     background-color: var(--cta-verde);
     color: #FFFFFF;
     text-decoration: none;
-    padding: 12px 25px;
+    padding: 8px 10px;
     border-radius: 8px;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
@@ -19,8 +21,29 @@
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-.add-space-button:hover {
+.add-space-button:hover,
+.reserve-space-button:hover,
+.edit-space-button:hover {
     background-color: #5a7a1c;
+    transform: translateY(-2px);
+}
+
+.delete-space-button {
+    display: inline;
+    background-color: var(--secundaria-amadeirado-medio);
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.delete-space-button:hover {
+    background-color: var(--primaria-amadeirado-escuro);
     transform: translateY(-2px);
 }
 
@@ -39,9 +62,12 @@
 }
 
 .dashboard-container {
-    max-width: 1200px; /* Largura máxima do conteúdo */
-    margin: 0 auto; /* Centraliza o conteúdo */
-    padding: 0 10px; /* Espaçamento lateral interno */
+    max-width: 1200px;
+    /* Largura máxima do conteúdo */
+    margin: 0 auto;
+    /* Centraliza o conteúdo */
+    padding: 0 10px;
+    /* Espaçamento lateral interno */
 }
 
 #spaces-list-container {
@@ -79,4 +105,41 @@
 
 .space-details div {
     margin: 5px 0;
+}
+
+.reserves-table-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fffef8;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.reserves-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Lato', sans-serif;
+}
+
+.reserves-table th {
+    background-color: #eae2d7;
+    color: #3e2f1c;
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+}
+
+.reserves-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.reserves-table tr:hover {
+    background-color: #f7f3eb;
+}
+
+.reserves-table td:nth-child(1) {
+    font-weight: bold;
 }
