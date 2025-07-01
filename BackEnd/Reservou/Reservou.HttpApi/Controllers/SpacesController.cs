@@ -1,11 +1,9 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Reservou.Domain.Spaces.Commands;
-using Reservou.Domain.Spaces.Dtos;
 using Reservou.Domain.Spaces.Handlers;
 using Reservou.Domain.Spaces.Infrastructure;
 using Reservou.HttpApi.ViewModels.Spaces;
-using System.Text.Json;
 
 namespace Reservou.HttpApi.Controllers;
 
@@ -55,6 +53,11 @@ public class SpacesController
         [FromServices] SpacesQueries spacesQueries)
     {
         var result = await spacesQueries.GetAllSpaces();
+
+        if (result is null || !result.Any())
+        {
+            return new StatusCodeResult(StatusCodes.Status204NoContent);
+        }
 
         return new ObjectResult(result);
     }

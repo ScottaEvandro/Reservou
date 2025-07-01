@@ -1,8 +1,6 @@
 document.getElementById('add-space-form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    console.log("Iniciando envio do formulário...");
-
     const spaceType = parseInt(document.getElementById('space-type').value, 10);
     const spaceName = document.getElementById('space-name').value;
     const spaceDescription = document.getElementById('space-description').value;
@@ -39,19 +37,21 @@ document.getElementById('add-space-form').addEventListener('submit', async funct
             formData.append('SpaceImages', selectedFiles[i]);
         }
 
-        console.log("FormData preparado para envio.");
-
         const urlApi = "https://localhost:7181/api/v1/Spaces/AddSpace";
 
         const response = await fetch(urlApi, {
             method: 'POST',
             body: formData
         });
-        console.log(response);
+
         if (response.ok) {
-            console.log("Salvou");
             successMessage.textContent = 'Cadastro do espaço realizado com sucesso!';
             successMessage.style.display = 'block';
+            
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 10000);
+
             document.getElementById('add-space-form').reset();
         } else {
             const errorText = await response.text().catch(() => 'Nenhuma mensagem de erro.');
@@ -59,6 +59,7 @@ document.getElementById('add-space-form').addEventListener('submit', async funct
             const displayErrorMessage = `Erro ao salvar o espaço: ${response.status} - ${errorText.substring(0, 100)}`;
             throw new Error(displayErrorMessage);
         }
+
     } catch (error) {
         console.error('Erro na requisição Fetch:', error);
         errorMessage.textContent = error.message || 'Ocorreu um erro ao conectar com o servidor. Verifique a API e tente novamente.';

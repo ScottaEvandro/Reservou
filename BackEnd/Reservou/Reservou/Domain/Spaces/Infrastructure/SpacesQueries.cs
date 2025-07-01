@@ -57,6 +57,11 @@ public class SpacesQueries : BaseConnection
 
         var result = await connection.QueryAsync<GetAllSpacesDto>(sql);
 
+        if (result is null)
+        {
+            return new List<GetAllSpacesDto>();
+        }
+
         var processedSpacesImages = new List<GetAllSpacesDto>();
         foreach (var space in result)
         {

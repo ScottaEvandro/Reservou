@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const spacesListContainer = document.getElementById('spaces-list-container');
 
     const urlApi = "https://localhost:7181/api/v1/Spaces/GetAllSpaces";
-    const IMAGE_BASE_URL = "http://127.0.0.1:5500/FrontEnd/Assets/Imagens/Spaces"
+    const IMAGE_BASE_URL = "http://127.0.0.1:5501/FrontEnd/Assets/Imagens/Spaces/"
 
     try {
         const response = await fetch(urlApi);
@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(`Erro ao buscar espaços: ${response.status} - ${errorText}`);
+        }
+
+        if (response.status == 204) {
+            spacesListContainer.innerHTML = '<p class="no-spaces-message">Nenhum espaço cadastrado.</p>';
+            return;
         }
 
         const spaces = await response.json();
@@ -23,21 +28,24 @@ document.addEventListener('DOMContentLoaded', async function () {
         spaces.forEach(space => {
             const spaceCard = document.createElement('div');
             spaceCard.classList.add('space-card');
-            console.log(space);
+            
+            const reserveTime = space.reserveTime;
+            const [hours, minutes] = reserveTime.split(":");
+
+            const reserveTimeFormated = `${parseInt(hours)} hora(s) e ${parseInt(minutes)} minuto(s)`;
+
             const imageUrl = space.imageUrls && space.imageUrls.length > 0
-                ? `${IMAGE_BASE_URL}/Spaces/${space.id}/${space.ImageUrls[0]}`
+                ? `${IMAGE_BASE_URL}${space.id}/${space.imageUrls[0]}`
                 : 'Assets/Imagens/{space.id}';
 
-            console.log(imageUrl);
-
             spaceCard.innerHTML = `
-                <img src="${imageUrl}" alt="${space.spaceName}" class="space-image">
-                <h3>${space.spaceName}</h3>
+                <img src="${imageUrl}" alt="${space.Name}" class="space-image">
+                <h3>${space.name}</h3>
                 <p>${space.description}</p>
                 <div class="space-details">
-                    <span><i class="fas fa-users"></i> Capacidade: ${space.capacity}</span>
-                    <span><i class="fas fa-dollar-sign"></i> Preço: R$ ${space.price.toFixed(2)}</span>
-                    <span><i class="fas fa-tag"></i> Tipo: ${space.spaceType}</span>
+                    <span><i class="fas fa-users"></i> Capacidade: ${space.capacity}</span><br>
+                    <span><i class="fas fa-dollar-sign"></i> Preço: R$ ${space.price.toFixed(2)}</span><br>
+                    <span><i class="fas fa-clock"></i> Duração da reserva: ${reserveTimeFormated}</span><br>
                 </div>
                 `;
             // <div class="space-actions">
